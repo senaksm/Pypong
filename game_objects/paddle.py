@@ -31,16 +31,12 @@ class Paddle:
         screen_top = self.y < 3
         screen_bottom = self.y > consts.SCREEN_HEIGHT - consts.PADDLE_LENGTH - 3
         if self.player == 1:
-            if (pyxel.btn(pyxel.KEY_W)
-                    or pyxel.btn(pyxel.GAMEPAD_1_UP)) and not screen_top:
+            if (pyxel.btn(pyxel.KEY_W)) and not screen_top:
                 self.y -= consts.PADDLE_SPEED
-            if (pyxel.btn(pyxel.KEY_S)
-                    or pyxel.btn(pyxel.GAMEPAD_1_DOWN)) and not screen_bottom:
+            if (pyxel.btn(pyxel.KEY_S)) and not screen_bottom:
                 self.y += consts.PADDLE_SPEED
         elif self.player == 2:
-            if (pyxel.btn(pyxel.KEY_UP)
-                    or pyxel.btn(pyxel.GAMEPAD_2_UP)) and not screen_top:
+            if (pyxel.btn(pyxel.KEY_UP)) and not screen_top:
                 self.y -= consts.PADDLE_SPEED
-            if (pyxel.btn(pyxel.KEY_DOWN)
-                    or pyxel.btn(pyxel.GAMEPAD_2_DOWN)) and not screen_bottom:
+            if (pyxel.btn(pyxel.KEY_DOWN)) and not screen_bottom:
                 self.y += consts.PADDLE_SPEED

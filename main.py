@@ -26,8 +26,8 @@ class PyPong:
     def __init__(self):
         pyxel.init(consts.SCREEN_WIDTH,
                    consts.SCREEN_HEIGHT,
-                   caption='PyPong',
-                   scale=consts.SCALE)
+                   title='PyPong',
+                   capture_scale=consts.SCALE)
         self.state = 'start'
         self.single_player = True
         self.table = Table()
@@ -56,36 +56,36 @@ class PyPong:
         menu_entrance_time = 0
         if self.state == 'start':
             selected_option = self.start_menu.update_selected_option()
-            if pyxel.btnp(pyxel.KEY_ENTER) and selected_option == 0:
+            if pyxel.btnp(pyxel.KEY_RETURN) and selected_option == 0:
                 self.single_player = True
                 menu_entrance_time = time()
                 self.state = 'bot'
-            if pyxel.btnp(pyxel.KEY_ENTER) and selected_option == 1:
+            if pyxel.btnp(pyxel.KEY_RETURN) and selected_option == 1:
                 self.single_player = False
                 self.state = 'game'
-            if pyxel.btnp(pyxel.KEY_ENTER) and selected_option == 2:
+            if pyxel.btnp(pyxel.KEY_RETURN) and selected_option == 2:
                 menu_entrance_time = time()
                 self.state = 'controls'
-            if pyxel.btnp(pyxel.KEY_ENTER) and selected_option == 3:
+            if pyxel.btnp(pyxel.KEY_RETURN) and selected_option == 3:
                 pyxel.quit()
 
         if self.state == 'controls' and time() - menu_entrance_time >= 1:
             selected_option = self.controls_menu.update_selected_option()
-            if pyxel.btnp(pyxel.KEY_ENTER) and selected_option == 0:
+            if pyxel.btnp(pyxel.KEY_RETURN) and selected_option == 0:
                 self.state = 'start'
 
         if self.state == 'bot' and time() - menu_entrance_time >= 1:
             selected_option = self.bot_menu.update_selected_option()
-            if pyxel.btnp(pyxel.KEY_ENTER) and selected_option == 0:
+            if pyxel.btnp(pyxel.KEY_RETURN) and selected_option == 0:
                 self.bot = Bot(1)
                 self.state = 'game'
-            if pyxel.btnp(pyxel.KEY_ENTER) and selected_option == 1:
+            if pyxel.btnp(pyxel.KEY_RETURN) and selected_option == 1:
                 self.bot = Bot(2)
                 self.state = 'game'
-            if pyxel.btnp(pyxel.KEY_ENTER) and selected_option == 2:
+            if pyxel.btnp(pyxel.KEY_RETURN) and selected_option == 2:
                 self.bot = Bot(3)
                 self.state = 'game'
-            if pyxel.btnp(pyxel.KEY_ENTER) and selected_option == 3:
+            if pyxel.btnp(pyxel.KEY_RETURN) and selected_option == 3:
                 self.state = 'start'
 
         if self.state == 'game':
@@ -118,16 +118,16 @@ class PyPong:
 
         if self.state == 'pause':
             selected_option = self.pause_menu.update_selected_option()
-            if pyxel.btnp(pyxel.KEY_ENTER) and selected_option == 0:
+            if pyxel.btnp(pyxel.KEY_RETURN) and selected_option == 0:
                 self.state = 'game'
-            if pyxel.btnp(pyxel.KEY_ENTER) and selected_option == 1:
+            if pyxel.btnp(pyxel.KEY_RETURN) and selected_option == 1:
                 self.reset()
 
         if self.state == 'win':
             selected_option = self.win_screen.update_selected_option()
-            if pyxel.btnp(pyxel.KEY_ENTER) and selected_option == 0:
+            if pyxel.btnp(pyxel.KEY_RETURN) and selected_option == 0:
                 self.reset()
-            if pyxel.btnp(pyxel.KEY_ENTER) and selected_option == 1:
+            if pyxel.btnp(pyxel.KEY_RETURN) and selected_option == 1:
                 pyxel.quit()
 
     def draw(self):

@@ -42,7 +42,7 @@ MENU_SCREENS = ['start', 'controls', 'bot', 'pause', 'win']
 START_SCREEN = ['Single-player mode', 'Two-players mode', 'Controls', 'Quit']
 CONTROLS_SCREEN_OPTIONS = ['Back']
 BOT_SCREEN_OPTIONS = ['Easy', 'Medium', 'Hard', 'Back']
-PAUSE_SCREEN_OPTIONS = ['Continue', 'Restart']
+PAUSE_SCREEN_OPTIONS = ['Continue', 'Main Menu']
 WIN_SCREEN = ['Play again', 'Quit']
 CONTROLS = [
     'W and S to move the first player\'s paddle,',
