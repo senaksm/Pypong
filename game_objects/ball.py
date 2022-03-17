@@ -64,6 +64,21 @@ class Ball:
                 else:
                     self.curved = False
 
+    def block_bounce(self, block):
+        block_edge = block.x
+        if isclose(self.x, block_edge, abs_tol=consts.BALL_RADIUS):
+            if (self.y + consts.BALL_RADIUS >=
+                    block.y) and (self.y - consts.BALL_RADIUS <=
+                                  block.y + consts.PADDLE_LENGTH):
+                self.x_direction_right = not self.x_direction_right
+                if (self.y + consts.BALL_RADIUS >
+                        block.y + consts.PADDLE_LENGTH -
+                        consts.PADDLE_TIP) or (self.y - consts.BALL_RADIUS <
+                                               block.y + consts.PADDLE_TIP):
+                    self.curved = True
+                else:
+                    self.curved = False
+
     def edge_bounce(self):
         ''' Changes ball's direction when bouncing off the table's edge. '''
         if self.y - consts.BALL_RADIUS <= consts.MEDIUM_MARGIN:
@@ -73,9 +88,9 @@ class Ball:
             self.y_direction_up = not self.y_direction_up
 
     def score_event(self, game):
-        ''' Increments paddle's score when ball is out of the table on the
+        """ Increments paddle's score when ball is out of the table on the
             opponent's side and repositions the ball. Returns time of the
-            score. '''
+            score. """
         score_time = 0
         if self.x >= consts.SCREEN_WIDTH or self.x <= 0:
             if self.x >= consts.SCREEN_WIDTH:

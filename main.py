@@ -18,6 +18,7 @@ from game_objects.menus import Menus, Controls, Win
 from game_objects.ball import Ball
 from game_objects.bot import Bot
 from game_objects.table import Table
+from game_objects.block import Block
 from time import time
 
 
@@ -38,6 +39,7 @@ class PyPong:
         self.win_screen = Win(consts.WIN_SCREEN)
         self.first_paddle = Paddle(player=1)
         self.second_paddle = Paddle(player=2)
+        self.block = Block()
         self.ball = Ball(x_direction_right=True)
         self.score_time = 0
         self.winner = None
@@ -91,6 +93,7 @@ class PyPong:
         if self.state == 'game':
             self.ball.update_position()
             self.ball.edge_bounce()
+            self.ball.block_bounce(self.block)
             if not self.ball.x_direction_right:
                 self.ball.paddle_bounce(self.first_paddle)
             if self.ball.x_direction_right:
@@ -154,6 +157,7 @@ class PyPong:
                                    self.second_paddle.score)
             self.first_paddle.draw()
             self.second_paddle.draw()
+            self.block.draw()
             self.ball.draw()
 
         if self.state == 'win':
