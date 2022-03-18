@@ -39,7 +39,7 @@ class PyPong:
         self.win_screen = Win(consts.WIN_SCREEN)
         self.first_paddle = Paddle(player=1)
         self.second_paddle = Paddle(player=2)
-        self.block = Block()
+        self.block = Block(100, 100, 50)
         self.ball = Ball(x_direction_right=True)
         self.score_time = 0
         self.winner = None

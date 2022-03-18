@@ -7,6 +7,9 @@ from time import time
 from math import isclose
 from random import randint, getrandbits
 
+from enums import Direction
+from utils import Point, intersection
+
 
 class Ball:
     ''' Class containing methods and variables related to the ball. '''
@@ -65,19 +68,14 @@ class Ball:
                     self.curved = False
 
     def block_bounce(self, block):
-        block_edge = block.x
-        if isclose(self.x, block_edge, abs_tol=consts.BALL_RADIUS):
-            if (self.y + consts.BALL_RADIUS >=
-                    block.y) and (self.y - consts.BALL_RADIUS <=
-                                  block.y + consts.PADDLE_LENGTH):
-                self.x_direction_right = not self.x_direction_right
-                if (self.y + consts.BALL_RADIUS >
-                        block.y + consts.PADDLE_LENGTH -
-                        consts.PADDLE_TIP) or (self.y - consts.BALL_RADIUS <
-                                               block.y + consts.PADDLE_TIP):
-                    self.curved = True
-                else:
-                    self.curved = False
+        self.corners = [
+            Point(self.x - consts.BALL_RADIUS, self.y - consts.BALL_RADIUS),
+            Point(self.x + consts.BALL_RADIUS, self.y + consts.BALL_RADIUS)]
+        direction = intersection(self, block)
+        if direction in (Direction.LEFT, Direction.RIGHT):
+            self.x_direction_right = not self.x_direction_right
+        if direction in (Direction.UP, Direction.DOWN):
+            self.y_direction_up = not self.y_direction_up
 
     def edge_bounce(self):
         ''' Changes ball's direction when bouncing off the table's edge. '''
